@@ -78,3 +78,6 @@ npm run deploy
 
 [Чеклист проектной работы. Спринт 10.](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-10.pdf)
 [Чеклист проектной работы. Спринт 11.](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-11.pdf)
+[Чеклист проектной работы. Спринт 12.](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-12.pdf)
+
+[Макет проектной работы 12](https://www.figma.com/file/5H3gsn5lIGPwzBPby9jAOo/Sprint-14-RU?node-id=0%3A1)

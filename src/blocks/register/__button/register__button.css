@@ -1,0 +1,17 @@
+.register__button {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000;
+
+  background-color: #fff;
+  border-radius: 2px;
+  border-color: #fff;
+  height: 50px;
+
+  margin-top: 216px;
+  margin-bottom: 15px;
+}

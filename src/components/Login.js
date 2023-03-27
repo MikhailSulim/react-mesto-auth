@@ -1,13 +1,13 @@
-function Register() {
+function Login() {
   return (
-    <form className="form-auth" name="form__register">
+    <form className="form-auth" name="form__login">
       <h2 className="form-auth__title" color="#fff">
-        Регистрация
+        Вход
       </h2>
       <input
         type="email"
-        id="input-register-email"
-        className="form-auth__input v__input_email"
+        id="input-login-email"
+        className="form-auth__input form-auth__input_email"
         placeholder="Email"
         name="email"
         required
@@ -18,7 +18,7 @@ function Register() {
 
       <input
         type="password"
-        id="input-register-password"
+        id="input-login-password"
         className="form-auth__input form-auth__input_password"
         placeholder="Пароль"
         name="password"
@@ -28,10 +28,9 @@ function Register() {
         // value={values.avatar || ""}
       />
 
-      <button className="form-auth__button">Зарегистрироваться </button>
-      <p className="form-auth__link">Уже зарегистрированы? Войти</p>
+      <button className="form-auth__button">Войти</button>
     </form>
   );
 }
 
-export default Register;
+export default Login;

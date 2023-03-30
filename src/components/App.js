@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import InfoTooltip from "./InfoTooltip";
 import ConfirmDeleteCardPopup from "./ConfirmDeleteCardPopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api.js";
@@ -161,10 +162,10 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
-        <Register />
+        {/* <Register /> */}
         {/* <Login /> */}
 
-        {/* <Main
+        <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -172,9 +173,11 @@ function App() {
           onCardClick={handleCardClick}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDeleteClick}
-        /> */}
+        />
 
         <Footer />
+
+        {/* <InfoTooltip />         */}
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}

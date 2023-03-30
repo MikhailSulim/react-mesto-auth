@@ -29,7 +29,7 @@ function Register() {
       />
 
       <button className="form-auth__button">Зарегистрироваться </button>
-      <p className="form-auth__link">Уже зарегистрированы? Войти</p>
+      <a href="" className="form-auth__link">Уже зарегистрированы? Войти</a>
     </form>
   );
 }

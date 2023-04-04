@@ -1,6 +1,31 @@
-function Register() {
+import React, { useCallback } from "react";
+import { Link, Navigate } from "react-router-dom";
+
+function Register({ isLoggedIn, onRegister }) {
+  const [userData, setUserData] = React.useState({ email: "", password: "" });
+
+  const onChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setUserData({ ...userData, [name]: value });
+    },
+    [userData]
+  );
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      onRegister(userData);
+    },
+    [onRegister, userData]
+  );
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
+
   return (
-    <form className="form-auth" name="form__register">
+    <form className="form-auth" name="form__register" onSubmit={handleSubmit}>
       <h2 className="form-auth__title" color="#fff">
         Регистрация
       </h2>
@@ -10,10 +35,9 @@ function Register() {
         className="form-auth__input v__input_email"
         placeholder="Email"
         name="email"
+        onChange={onChange}
+        value={userData.email}
         required
-        // onChange={onChange}
-
-        // value={values.avatar || ""}
       />
 
       <input
@@ -23,13 +47,17 @@ function Register() {
         placeholder="Пароль"
         name="password"
         required
-        // onChange={onChange}
-
-        // value={values.avatar || ""}
+        onChange={onChange}
+        value={userData.password}
       />
 
       <button className="form-auth__button">Зарегистрироваться </button>
-      <a href="" className="form-auth__link">Уже зарегистрированы? Войти</a>
+      <p className="form-auth__link-text">
+        {`Уже зарегистрированы? `}
+        <Link to="/signin" className="form-auth__link">
+          Войти
+        </Link>
+      </p>
     </form>
   );
 }

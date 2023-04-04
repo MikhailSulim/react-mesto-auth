@@ -1,4 +1,4 @@
-.form-auth__link {
+.form-auth__link-text {
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -8,11 +8,4 @@
   color: #fff;
   margin: 0;
   padding: 0;
-  text-decoration: none;
-  transition: opacity 0.5s;
-}
-
-.form-auth__link:hover {
-  opacity: 0.6;
-  cursor: pointer;
 }

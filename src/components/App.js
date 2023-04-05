@@ -17,6 +17,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRouteElement from "./ProtectedRoute";
 
 function App() {
+  const ERR_MESSAGE = "Что-то пошло не так! Попробуйте ещё раз.";
   // переменные состояния, отвечающие за видимость попапов
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -24,6 +25,7 @@ function App() {
   const [isConfirmDeleteCardPopupOpen, setIsConfirmDeleteCardPopupOpen] =
     useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [textMessageInfoTooltip, setTextMessageInfoTooltip] = useState("");
 
   // переменные состояния, отвечающие за карточки
   const [selectedCard, setSelectedCard] = useState({});
@@ -39,7 +41,7 @@ function App() {
   // // переменные состояния, отвечающие за авторизацию
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userLogin, setUserLogin] = useState(null);
-  const [isRegister, setIsRegister] = useState(false);
+  const [isValidAuth, setIsValidAuth] = useState(false);
 
   const [isShowMenu, setIsShowMenu] = useState(false);
 
@@ -174,18 +176,23 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+        setIsValidAuth(false);
+        setTextMessageInfoTooltip(ERR_MESSAGE);
+        setIsInfoTooltipOpen(!isInfoTooltipOpen);
       });
   }
 
   function cbRegister({ email, password }) {
     register(email, password)
       .then((res) => {
-        setIsRegister(true);
+        setIsValidAuth(true);
+        setTextMessageInfoTooltip("Вы успешно зарегистрировались!");
         setIsInfoTooltipOpen(!isInfoTooltipOpen);
         navigate("/signin", { replace: true });
       })
       .catch(() => {
-        setIsRegister(false);
+        setIsValidAuth(false);
+        setTextMessageInfoTooltip(ERR_MESSAGE);
         setIsInfoTooltipOpen(!isInfoTooltipOpen);
       });
   }
@@ -233,7 +240,8 @@ function App() {
     }
   }
 
-  function handleShowMenu() { // функция для раскрытия/закрытия меню в мобильной версии
+  function handleShowMenu() {
+    // функция для раскрытия/закрытия меню в мобильной версии
     setIsShowMenu(!isShowMenu);
   }
 
@@ -310,7 +318,8 @@ function App() {
         <InfoTooltip
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
-          isRegister={isRegister}
+          isValidAuth={isValidAuth}
+          textMessage={textMessageInfoTooltip}
         />
 
         <EditProfilePopup

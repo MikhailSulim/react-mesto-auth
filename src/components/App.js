@@ -169,6 +169,7 @@ function App() {
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
+        setUserLogin(email);
         navigate("/", { replace: true });
       })
       .catch((err) => {

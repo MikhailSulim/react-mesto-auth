@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.b8168ab6.css",
+    "main.js": "./static/js/main.f49f3539.js",
+    "static/js/787.2df4b1c8.chunk.js": "./static/js/787.2df4b1c8.chunk.js",
+    "static/media/Inter-Black.woff": "./static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "./static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-Medium.woff2": "./static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Black.woff2": "./static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-Regular.woff2": "./static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/logo.svg": "./static/media/logo.03b78ada3425e9132ff3.svg",
+    "index.html": "./index.html",
+    "static/media/like_disable.svg": "./static/media/like_disable.87ed371465c7a6a1cd01.svg",
+    "static/media/logo_trash.svg": "./static/media/logo_trash.cbc09a894bdd4c956365.svg",
+    "static/media/AuthError.svg": "./static/media/AuthError.df8eddf661ff88f2d0ef.svg",
+    "static/media/AuthSuccess.svg": "./static/media/AuthSuccess.1b6082f862eac35e2514.svg",
+    "static/media/like_enable.svg": "./static/media/like_enable.fe17a515669479b1e649.svg",
+    "static/media/btnOpen.svg": "./static/media/btnOpen.22b719ae66b4c804fc56.svg",
+    "static/media/editbtn.svg": "./static/media/editbtn.8667ac4a523e8fc42e59.svg",
+    "static/media/edit_avatar.svg": "./static/media/edit_avatar.a086f758840ae814ecde.svg",
+    "static/media/Close_Icon.svg": "./static/media/Close_Icon.2ceb783afbab75916ddc.svg",
+    "static/media/addbtn.svg": "./static/media/addbtn.d86bb2edc2f6eadb96b7.svg",
+    "main.b8168ab6.css.map": "./static/css/main.b8168ab6.css.map",
+    "main.f49f3539.js.map": "./static/js/main.f49f3539.js.map",
+    "787.2df4b1c8.chunk.js.map": "./static/js/787.2df4b1c8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b8168ab6.css",
+    "static/js/main.f49f3539.js"
+  ]
+}

@@ -3,3 +3,9 @@
   flex-direction: row;
   margin: 0 0 41px 0;
 }
+
+@media screen and (max-width: 570px) {
+  .header__auth {
+    margin: 0 0 30.6px 0;
+  }
+}

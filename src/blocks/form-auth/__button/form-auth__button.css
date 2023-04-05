@@ -14,10 +14,21 @@
 
   margin-top: 216px;
   margin-bottom: 15px;
+  padding: 0;
   transition: opacity 0.5s;
 }
 
 .form-auth__button:hover {
   opacity: 0.85;
   cursor: pointer;
+}
+
+@media screen and (max-width: 570px) {
+  .form-auth__button {
+    margin-top: 143px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 19px;
+    height: 46px;
+  }
 }

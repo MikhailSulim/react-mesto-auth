@@ -14,3 +14,11 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+@media screen and (max-width: 570px) {
+.header__signin {
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 27px;
+}  
+}

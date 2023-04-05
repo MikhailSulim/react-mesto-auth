@@ -179,61 +179,22 @@ function App() {
   function cbRegister({ email, password }) {
     register(email, password)
       .then((res) => {
-        // setPopupStatus({image: checkmarkImg, message: 'Вы успешно зарегистрировались!'});
-        // console.log(res);
         setIsRegister(true);
         setIsInfoTooltipOpen(!isInfoTooltipOpen);
         navigate("/signin", { replace: true });
       })
       .catch(() => {
-        // setPopupStatus({image: crossImg, message: 'Что-то пошло не так! Попробуйте еще раз.'});
         setIsRegister(false);
         setIsInfoTooltipOpen(!isInfoTooltipOpen);
       });
-    // .finally(handleInfoTooltip);
   }
-  // const cbRegister = async ({ email, password }) => {
-  //   try {
-  //     const data = await register(email, password);
-  //     if (!data) {
-  //       throw new Error("Ошибка регистрации");
-  //     }
-
-  //     if (data.token) {
-  //       localStorage.setItem("jwt", data.token);
-  //       setIsLoggedIn(true);
-  //       setUserData(data.user);
-  //       navigate("/sign-in");
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   } finally {
-  //   }
-  // };
-
-  // function checkToken() {
-  //   const jwt = localStorage.getItem("jwt");
-
-  //   getTokenData(jwt)
-  //     .then((res) => {
-  //       // console.log(res.data.email);
-  //       setUserLogin(res.data.email );
-  //       setIsLoggedIn(true);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }
+  
 
   function cbLogOut() {
     setIsLoggedIn(false);
     setUserLogin(null);
     localStorage.removeItem("jwt");
   }
-
-  // React.useEffect(() => {
-  //   checkToken();
-  // }, [checkToken]);
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -250,7 +211,6 @@ function App() {
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      // console.log("dsdsdsd");
       api
         .getAllData()
         .then((res) => {
@@ -261,6 +221,18 @@ function App() {
         .catch((error) => console.error("error", error));
     }
   }, [isLoggedIn]);
+
+  function closePopupByEsc(event) {
+    if (event.key === "Escape") {
+      closeAllPopups();
+    }
+  }
+
+  function closePopupByClickOverlay(event) {
+    if (event.target.classList.contains('popup_is-opened')) {
+      closeAllPopups();
+    }
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -323,6 +295,8 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
+          onCloseEsc={closePopupByEsc}
+          onCloseOverlay={closePopupByClickOverlay}
         />
 
         <EditAvatarPopup
@@ -330,6 +304,8 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
+          onCloseEsc={closePopupByEsc}
+          onCloseOverlay={closePopupByClickOverlay}
         />
 
         <AddPlacePopup
@@ -337,6 +313,8 @@ function App() {
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
           isLoading={isLoading}
+          onCloseEsc={closePopupByEsc}
+          onCloseOverlay={closePopupByClickOverlay}
         />
 
         <ConfirmDeleteCardPopup
@@ -345,6 +323,8 @@ function App() {
           onCardDelete={handleCardDelete}
           cardId={deletedCard}
           isLoading={isLoading}
+          onCloseEsc={closePopupByEsc}
+          onCloseOverlay={closePopupByClickOverlay}
         />
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
@@ -365,3 +345,7 @@ return () => {document.remove...}.
 Также в этом компоненте можно описать функцию клика по overlay. Проверку осуществить через event.target и event.currentTarget. 
 Повесить этот обработчик на сам div на событие onClick. Компонент использовать в PopupWithForm и ImagePopup вместо div
 */
+
+// TODO добавить лоадер, скрывающий переход на страницу авторизации при перезагрузке сайта
+// TODO перенести в свой хук логику авторизации
+// TODO сверстать мобильную версию авторизации

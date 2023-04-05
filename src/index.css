@@ -65,3 +65,7 @@
 @import url("./blocks/form-auth/__button/form-auth__button.css");
 @import url("./blocks/form-auth/__link/form-auth__link.css");
 @import url("./blocks/form-auth/__link-text/form-auth__link-text.css");
+
+@import url("./blocks/header/__mobileMenuBtn/header__mobileMenuBtn.css");
+@import url("./blocks/header/__mobileMenuBtn/_close/header__mobileMenuBtn_close.css");
+@import url("./blocks/header/__auth/_visible/header__auth_visible.css");

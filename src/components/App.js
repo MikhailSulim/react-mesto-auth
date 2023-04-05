@@ -13,7 +13,7 @@ import ImagePopup from "./ImagePopup";
 import api from "../utils/Api.js";
 import { register, authorize, getTokenData } from "../utils/ApiAuth";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRouteElement from "./ProtectedRoute";
 
 function App() {
@@ -31,15 +31,17 @@ function App() {
   const [cards, setCards] = useState([]);
 
   // переменные состояния, отвечающие за данные текущего пользователя
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
   // переменные состояния, твечающие за лоадеры
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // переменные состояния, отвечающие за авторизацию
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [userLogin, setUserLogin] = React.useState(null);
+  // // переменные состояния, отвечающие за авторизацию
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userLogin, setUserLogin] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
+
+  const [isShowMenu, setIsShowMenu] = useState(false);
 
   const navigate = useNavigate();
 
@@ -166,9 +168,7 @@ function App() {
     authorize(email, password)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-
         setIsLoggedIn(true);
-        // setEmailValue(email);
         navigate("/", { replace: true });
       })
       .catch((err) => {
@@ -188,7 +188,6 @@ function App() {
         setIsInfoTooltipOpen(!isInfoTooltipOpen);
       });
   }
-  
 
   function cbLogOut() {
     setIsLoggedIn(false);
@@ -200,14 +199,13 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     getTokenData(jwt)
       .then((res) => {
-        // console.log(res.data.email);
         setUserLogin(res.data.email);
         setIsLoggedIn(true);
       })
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -229,9 +227,13 @@ function App() {
   }
 
   function closePopupByClickOverlay(event) {
-    if (event.target.classList.contains('popup_is-opened')) {
+    if (event.target.classList.contains("popup_is-opened")) {
       closeAllPopups();
     }
+  }
+
+  function handleShowMenu() { // функция для раскрытия/закрытия меню в мобильной версии
+    setIsShowMenu(!isShowMenu);
   }
 
   return (
@@ -247,6 +249,8 @@ function App() {
                   signText="Выйти"
                   onClick={cbLogOut}
                   route=""
+                  onShowMenu={handleShowMenu}
+                  isShowMenu={isShowMenu}
                 />
                 <ProtectedRouteElement
                   component={Main}
@@ -266,7 +270,13 @@ function App() {
             path="/signin"
             element={
               <>
-                <Header loginText="" signText="Регистрация" route="/signup" />
+                <Header
+                  loginText=""
+                  signText="Регистрация"
+                  route="/signup"
+                  onShowMenu={handleShowMenu}
+                  isShowMenu={isShowMenu}
+                />
                 <Login isLoggedIn={isLoggedIn} onLogin={cbLogin} />
               </>
             }
@@ -275,9 +285,21 @@ function App() {
             path="/signup"
             element={
               <>
-                <Header loginText="" signText="Войти" route="/signin" />
+                <Header
+                  loginText=""
+                  signText="Войти"
+                  route="/signin"
+                  onShowMenu={handleShowMenu}
+                  isShowMenu={isShowMenu}
+                />
                 <Register isLoggedIn={isLoggedIn} onRegister={cbRegister} />
               </>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />
             }
           />
         </Routes>
@@ -334,18 +356,3 @@ function App() {
 }
 
 export default App;
-
-/*   
-Не хватает закрытия модальных окон по Esc и оверлей. Лучший способ реализации это описать еще один компонент Popup, 
-который будет возвращать обертку div className='.popup ...' В этот компонент передавать children isOpen и функцию закрытия onClose. 
-С помощью хука useEffect обхявить обработчик закрытия по Esc и описать проверку, что Если стейт isOpen в истине, 
-тогда вешать слушатель на document. Из хука, вне проверки нужно будет вернуть колбэком удаление слушателя 
-return () => {document.remove...}. 
-В массив зависимостей записать также isOpen, чтобы реакт понимал когда нужно вешать и когда удалять обработчик. 
-Также в этом компоненте можно описать функцию клика по overlay. Проверку осуществить через event.target и event.currentTarget. 
-Повесить этот обработчик на сам div на событие onClick. Компонент использовать в PopupWithForm и ImagePopup вместо div
-*/
-
-// TODO добавить лоадер, скрывающий переход на страницу авторизации при перезагрузке сайта
-// TODO перенести в свой хук логику авторизации
-// TODO сверстать мобильную версию авторизации

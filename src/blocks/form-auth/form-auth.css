@@ -8,10 +8,8 @@
   min-height: 75vh;
 }
 
-
 @media screen and (max-width: 570px) {
   .form-auth {
     max-width: 260px;
   }
-  
 }

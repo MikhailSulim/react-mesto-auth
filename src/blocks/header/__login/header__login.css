@@ -7,3 +7,18 @@
   color: #fff;
   margin: 0 24px 0 0;
 }
+
+/* @media screen and (max-width: 570px) {
+  .header__login {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+  }
+} */
+
+@media screen and (max-width: 570px) {
+  .header__login {
+    margin: 0;
+    padding-top: 12px;
+  }
+}
